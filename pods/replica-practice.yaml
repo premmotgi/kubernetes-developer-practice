@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+  name: new-replica-set
+
+spec:
+  selector:
+    tier: frontend
+  replicas: 4
+  template:
+    metadata:
+      name: busybox
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command:
+            - sleep
+            - "3600"
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
