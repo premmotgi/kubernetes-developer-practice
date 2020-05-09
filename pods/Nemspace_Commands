@@ -1,0 +1,24 @@
+
+1)Create:
+Kubectl create <Namepspace>
+
+2)get pods from namespace:
+kubectl get pods --namespace=dev
+
+3) Switching to context for a long term basis, since by default namespace will be default
+kubectl config set-context $(kubectl config current-context) --namespace=<Namepspace>
+
+4) get all pods
+    kubectl get pods --all-namespaces
+
+5) For each of the different namespace you can create a different resource quota
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: <Namespace-Name>
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi

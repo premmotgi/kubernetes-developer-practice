@@ -1,0 +1,43 @@
+***)way 1 of creating the pod file:
+
+kubectl edit pod <pod name> - opens the file to edit the pod definition file
+
+edit the file and changes will be stored in some tmp folder!
+
+kubectl delete pod webapp - delete the existing pod
+
+kubectl create -f /tmp/kubectl-edit-ccvrq.yaml - this will create the pod from new editings
+
+
+***)way 2 of creating the pod file:
+
+kubectl get pod webapp -o yaml > my-new-pod.yaml
+
+take the definition in  some file
+
+vi my-new-pod.yaml
+edit that file
+
+kubectl delete pod webapp
+delete the current pod
+
+kubectl create -f my-new-pod.yaml
+deploy the newly edited pod
+
+
+__________________________________________________________________________________________
+
+***)Edit Deployments
+
+With Deployments you can easily edit any field/property of the POD template.
+Since the pod template is a child of the deployment specification,
+with every change the deployment will automatically delete and create a new pod with the new changes.
+So if you are asked to edit a property of a POD part of a deployment you may do that simply by running the command
+
+kubectl edit deployment my-deployment
+
+
+
+
+
+
