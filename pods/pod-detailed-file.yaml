@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-05-10T00:03:06Z"
+  labels:
+    name: webapp-color
+  name: webapp-color
+  namespace: default
+  resourceVersion: "1202"
+  selfLink: /api/v1/namespaces/default/pods/webapp-color
+  uid: 193e7d1e-3583-4045-9bee-ea1b2ca026b4
+spec:
+  containers:
+    - envFrom:
+      - configMapRef:
+          name: webapp-config-map
+      image: kodekloud/webapp-color
+      imagePullPolicy: Always
+      name: webapp-color
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-jwwtl
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: node01
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - name: default-token-jwwtl
+      secret:
+        defaultMode: 420
+        secretName: default-token-jwwtl
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-10T00:03:06Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-10T00:03:09Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-10T00:03:09Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-10T00:03:06Z"
+      status: "True"
+      type: PodScheduled
+  containerStatuses:
+    - containerID: docker://38001470043f1af52f9ba8feb56f246af86a696b25c574b03b9c2033556b776a
+      image: kodekloud/webapp-color:latest
+      imageID: docker-pullable://kodekloud/webapp-color@sha256:99c3821ea49b89c7a22d3eebab5c2e1ec651452e7675af243485034a72eb1423
+      lastState: {}
+      name: webapp-color
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2020-05-10T00:03:08Z"
+  hostIP: 172.17.0.50
+  phase: Running
+  podIP: 10.44.0.1
+  podIPs:
+    - ip: 10.44.0.1
+  qosClass: BestEffort
+  startTime: "2020-05-10T00:03:06Z"

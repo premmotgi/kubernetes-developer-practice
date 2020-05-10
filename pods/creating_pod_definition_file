@@ -25,6 +25,10 @@ kubectl create -f my-new-pod.yaml
 deploy the newly edited pod
 
 
+  - command:
+    - sleep
+    - "4800"
+
 __________________________________________________________________________________________
 
 ***)Edit Deployments

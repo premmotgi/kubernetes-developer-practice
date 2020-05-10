@@ -1,0 +1,38 @@
+creating a config key/value pair
+
+kubectl create configMap <config-name> --from-literal=<key>=<value>
+
+from file:
+kubectl create configMap config-name --from-file=<path to file> e.g. application.properties where key value only is the format to store
+
+
+file:
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name:
+data:
+    KEY: VALUE
+    KEY: VALUE
+    KEY: VALUE
+
+kubectl get configmaps
+kubectl describe configmaps
+
+
+[IN POD DEFINITION FILE]
+use as:
+
+
+envFrom:
+    - configMapRef:
+        name: app-config
+
+
+env:
+    - name: <key>
+      valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: <key-to-refer>

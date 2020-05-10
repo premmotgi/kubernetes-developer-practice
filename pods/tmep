@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-05-10T01:11:47Z"
+  labels:
+    name: webapp-pod
+  name: webapp-pod
+  namespace: default
+  resourceVersion: "1669"
+  selfLink: /api/v1/namespaces/default/pods/webapp-pod
+  uid: 89cc724e-4663-4db7-8b34-e1a457b36e67
+spec:
+
+  containers:
+  - image: kodekloud/simple-webapp-mysql
+    imagePullPolicy: Always
+    name: webapp
+    envFrom:
+        - secretRef:
+            name: db-secret
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-n274f
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: node01
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-n274f
+    secret:
+      defaultMode: 420
+      secretName: default-token-n274f
+  - name: db-secret-volume
+    secret:
+      secretName: db-secret
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-05-10T01:11:47Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-05-10T01:11:53Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-05-10T01:11:53Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2020-05-10T01:11:47Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://21082df5a6f6041effbb81fae1f89a08b7c753e2e0c7e7f67aaaa154c17cd1a5
+    image: kodekloud/simple-webapp-mysql:latest
+    imageID: docker-pullable://kodekloud/simple-webapp-mysql@sha256:92943d2b3ea4a1db7c8a9529cd5786ae3b9999e0246ab665c29922e9800d1b41
+    lastState: {}
+    name: webapp
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2020-05-10T01:11:53Z"
+  hostIP: 172.17.0.9
+  phase: Running
+  podIP: 10.44.0.1
+  podIPs:
+  - ip: 10.44.0.1
+  qosClass: BestEffort
+  startTime: "2020-05-10T01:11:47Z"
