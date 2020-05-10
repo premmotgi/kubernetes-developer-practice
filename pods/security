@@ -1,0 +1,52 @@
+(container level)
+add the user:
+docker run --user=1001 ubuntu sleep 3600 - adds the user when running the os, this makes the root access not reachable to container
+
+docker run --cap-add MAC_ADMIN ubuntu -> give the extra previlege while running
+
+
+(POD level)- setting at pod applies to all the containers
+
+if security is configured both at the pod and container level then security at container level overrides the security
+at pod level
+
+definition at pod level:
+###NO CAPABILTIES AT POD LEVEL
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper-3
+spec:
+  securityContext:
+    runAsUser: <userid to create and run>
+
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "1200"
+
+definition at container level:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper-3
+spec:
+
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "1200"
+      securityContext:
+        runAsUser: <userid to create and run>
+      capabilities: ###ONLY AT CONTAINER LEVEL
+        add: ["MAC_ADMIN"]
+
+_____________________________
+kubectl exec -it ubuntu-sleeper -- date -s '19 APR 2012 11:14:00'
+______________________________________________
