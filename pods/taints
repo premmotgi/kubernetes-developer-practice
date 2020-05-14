@@ -1,0 +1,37 @@
+
+
+kubectl taint nodes <nodename> key=value:taint-effect
+
+
+
+kubectl taint nodes node01 spray=mortein:NoSchedule
+
+NoSchedule
+PreferNoSchedule
+NoExecute - preempts the currently executing node in order to execute the node
+
+
+kubectl taint node <node-name> node-role.kubernetes.io/master:NoSchedule-
+
+"-" at the end to remove
+
+
+adding the toleration in pod:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper-3
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+#key=value:taint-effect
+  tolerations:
+    - key: app/key
+      operator: "Equal"
+      value: "value"
+      effect: NoEffect/ NoSchedule/ PreferNoSchedule
+
+
+
