@@ -8,6 +8,9 @@ kubectl get pods --namespace=dev
 3) Switching to context for a long term basis, since by default namespace will be default
 kubectl config set-context $(kubectl config current-context) --namespace=<Namepspace>
 
+kubectl config set-context $(kubectl config current-context) --namespace=elastic-stack
+
+
 4) get all pods
     kubectl get pods --all-namespaces
 

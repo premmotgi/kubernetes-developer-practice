@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-05-15T03:10:52Z"
+  labels:
+    name: simple-webapp
+  name: simple-webapp-2
+  namespace: default
+  resourceVersion: "2446"
+  selfLink: /api/v1/namespaces/default/pods/simple-webapp-2
+  uid: da12f481-4057-4087-8043-b076432b4b6f
+spec:
+  containers:
+    - env:
+        - name: APP_START_DELAY
+          value: "80"
+      image: kodekloud/webapp-delayed-start
+      imagePullPolicy: Always
+      name: simple-webapp
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ready
+          port: 8080
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      livenessProbe:
+        httpGet:
+          path: /live
+          port: 8080
+        periodSeconds: 1
+        initialDelaySeconds: 80
+
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-q7cxg
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: node01
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - name: default-token-q7cxg
+      secret:
+        defaultMode: 420
+        secretName: default-token-q7cxg
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-15T03:10:52Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-15T03:15:05Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-15T03:15:05Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2020-05-15T03:10:52Z"
+      status: "True"
+      type: PodScheduled
+  containerStatuses:
+    - containerID: docker://493d57f44e0199e7333ada8069bb44241f3f6bdb1bf2e175233ff4c8e4b90b01
+      image: kodekloud/webapp-delayed-start:latest
+      imageID: docker-pullable://kodekloud/webapp-delayed-start@sha256:666b95c2ef8e00a74fa0ea96def8d9d69104ec5d9b9b0f49d8a76bd4c94ad343
+      lastState:
+        terminated:
+          containerID: docker://af4bf3814cc75d74b6f4ffef10a2d68de4b0b08377f668d68b9aa987c8033952
+          exitCode: 0
+          finishedAt: "2020-05-15T03:13:35Z"
+          reason: Completed
+          startedAt: "2020-05-15T03:10:55Z"
+      name: simple-webapp
+      ready: true
+      restartCount: 1
+      started: true
+      state:
+        running:
+          startedAt: "2020-05-15T03:13:37Z"
+  hostIP: 172.17.0.15
+  phase: Running
+  podIP: 10.32.0.4
+  podIPs:
+    - ip: 10.32.0.4
+  qosClass: BestEffort
+  startTime: "2020-05-15T03:10:52Z"

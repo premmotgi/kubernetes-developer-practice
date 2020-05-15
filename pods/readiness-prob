@@ -1,0 +1,41 @@
+readiness probe can be used to execute some commands to make sure that your service is live or not
+in order to do this, you may need to incorporate this in pod definition file
+When the application crashes, the container is restarted. During this period the service directs users to the available POD,
+since the POD status is not READY.
+
+
+If you have service exposed with the pods then the request will not be directed to pods until the reuest probe is available
+
+
+
+3 types:
+
+1. http
+2. tcp
+3. exec commands
+
+
+readinessProbe:
+    httpGet:
+        path:
+        port:
+        #optional
+        initialDelaySeconds: 10 <time which you think will be required to get app ready, after this time only the readiness
+                                    probe request will be executed>
+        periodSeconds: 5 <how oftern you want to execute readiness probe check>
+
+        # by deafault readiness is checked for "3" attempts, which can be changed by
+        failureThreshold: 8
+
+
+
+readinessProbe:
+    tcpSocket:
+        port:
+
+readinessProbe:
+    exec:
+        command:
+            - cat
+            - <file_path>
+            -

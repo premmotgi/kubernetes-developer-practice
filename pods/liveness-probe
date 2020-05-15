@@ -1,0 +1,38 @@
+liveness probe is useful when you have some containers which are in exited state and you need to check if application
+is live and only in that case you will create the container again.
+
+If you have service exposed with the pods then the request will not be directed to pods until the liveness probe is available
+
+
+
+3 types:
+
+1. http
+2. tcp
+3. exec commands
+
+
+livenessProbe:
+    httpGet:
+        path:
+        port:
+        #optional
+        initialDelaySeconds: 10 <time which you think will be required to get app ready, after this time only the livenessProbe
+                                    probe request will be executed>
+        periodSeconds: 5 <how oftern you want to execute livenessProbe probe check>
+
+        # by deafault livenessProbe is checked for "3" attempts, which can be changed by
+        failureThreshold: 8
+
+
+
+livenessProbe:
+    tcpSocket:
+        port:
+
+livenessProbe:
+    exec:
+        command:
+            - cat
+            - <file_path>
+            -

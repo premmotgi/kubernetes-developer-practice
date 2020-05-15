@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: blue
+  labels:
+    app: practice-app
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: practice-pod
+  template:
+    metadata:
+      name: blue
+      labels:
+        app: practice-pod
+    spec:
+      containers:
+        - name: blue
+          image: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: color
+                    operator: In
+                    values:
+                      - blue
+
+
+
+

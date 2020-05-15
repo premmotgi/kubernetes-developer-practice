@@ -1,0 +1,24 @@
+
+Labela a node:
+
+kubectl lable nodes <node-name> <label-key>:<label-value>
+
+
+if you have multiple labels then its tough to decide on which node the pod should go and hence for that reason we have
+node affinity
+
+in pod definition
+
+affinity:
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution: # execute even if node doesnt exist
+        requiredDuringSchedulingIgnoredDuringExecution: #execute only if node exists
+            nodeSelectorTerms:
+                -
+                    matchExpressions:
+                        - key: <key>
+                          operator: <operator>/ Exists (checks if label exists, if so then executes)
+                          values:
+                            -
+                            -
+                            -

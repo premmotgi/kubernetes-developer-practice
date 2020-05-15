@@ -28,7 +28,7 @@ spec:
       image: ubuntu
 #key=value:taint-effect
   tolerations:
-    - key: app/key
+    - key: "app/key"
       operator: "Equal"
       value: "value"
       effect: NoEffect/ NoSchedule/ PreferNoSchedule
