@@ -1,0 +1,10 @@
+to view the logs of container
+
+
+kubectl logs -f <podname>
+
+
+
+if pod has more than one container, then use
+
+kubectl logs -f <pod> <container-name>

@@ -1,0 +1,27 @@
+monitoring helps to understand usage of containers withing pods or pods within cluster
+
+all of these monitoring is done "In Memory"
+
+***************************************************************************************************
+a) in minikube:
+
+minikube addons enable metrics-server
+
+****************************************************************************************************
+
+b) for other kube8 envs:
+
+1) git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+
+2) Move to the folder by:
+
+cd kubernetes-metrics-server
+
+3) Execute the line for executing the all the yaml codes in the kube metrics folder
+
+kubectl create -f .
+
+4) getting monitored values:
+
+kubectl top node
+kubectl top pod

@@ -1,0 +1,9 @@
+kubectl rollout status deployment/<dep name>
+
+kubectl rollout history deployment/<dep name>
+
+kubectl rollout undo deployment/<dep name>
+
+
+describe command to deployment tells whether dpeloyment is rollout or create
+

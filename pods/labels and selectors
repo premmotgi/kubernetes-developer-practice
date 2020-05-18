@@ -1,0 +1,22 @@
+labels
+
+are usually how you label the nodes. you do it in labels part of your pod definition file
+
+
+
+selectors:
+
+
+selectors are usually required for accessing these labels, such as:
+
+
+kubectl get pods --selector app=App1
+
+** More than one selector:
+
+kubectl get pods --selector app=App1, key2=value2
+
+
+annotation:
+
+used to record other informatory data, maybe used for some kind of integration purpose.

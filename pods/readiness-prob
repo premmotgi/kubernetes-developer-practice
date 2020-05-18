@@ -28,6 +28,9 @@ readinessProbe:
         failureThreshold: 8
 
 
+I apologize for the urgency, would it be feasible to process my request by this or start of the next week? Since the company has been asking for CPT to get me on-boarded on June 1st.
+
+
 
 readinessProbe:
     tcpSocket:
