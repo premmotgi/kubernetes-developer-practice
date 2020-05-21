@@ -1,0 +1,19 @@
+##answer for ingress network part 2
+
+namespace:
+
+kubectl create namespace ingress-space
+
+
+2) create config map
+3) create a service account
+
+4) check rules
+
+kubectl get roles,rolebindings --namespace ingress-space
+
+
+5) create controller, service and ingress resource. all the files are avalible in directory.
+
+
+6) after all this you would be able to access the /wear and /watch using host name.

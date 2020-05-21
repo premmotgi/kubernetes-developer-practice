@@ -1,4 +1,11 @@
 
+
+service-x.namespace-b.svc.cluster.local
+
+
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
 1)Create:
 Kubectl create <Namepspace>
 
@@ -11,8 +18,12 @@ kubectl config set-context $(kubectl config current-context) --namespace=<Nameps
 kubectl config set-context $(kubectl config current-context) --namespace=elastic-stack
 
 
+
 4) get all pods
     kubectl get pods --all-namespaces
+Run the command 'kubectl get all --all-namespaces'
+Run the command 'kubectl get ingress --all-namespaces'
+
 
 5) For each of the different namespace you can create a different resource quota
 apiVersion: v1
