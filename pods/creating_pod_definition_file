@@ -43,5 +43,10 @@ kubectl edit deployment my-deployment
 
 
 
+------------------------------------------
 
+view inside pod container
+
+
+kubectl exec <cont/pod> <command>
 

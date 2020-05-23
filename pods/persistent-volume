@@ -1,0 +1,39 @@
+persistent volumes can be used, where you create the pods which uses memory from the poop which is persistent
+and then that memory can be accessed via normal stuff/normal hdd.
+
+like pod definition file you can write a own definition file for this.
+
+in production environment dont use the
+
+path: key-value param as in definitio file. Supported cloud will have its own key-val. that is more safe to use.
+
+
+
+these volumes can be accessed by persistent volume claims.
+
+before giving access to the volume, kubernetes checks whether the claim can be satisfied or not. If the claim can be satisfied
+then it maps that volume to the claim.[Uses Worst Fit approach in the OS]
+
+
+Once you create a PVC use it in a POD definition file by specifying the PVC Claim name under persistentVolumeClaim section in the volumes section like this:
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim
+
+
+The same is true for ReplicaSets or Deployments. Add this to the pod template section of a Deployment on ReplicaSet.
