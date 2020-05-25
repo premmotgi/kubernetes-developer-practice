@@ -1,0 +1,43 @@
+to establish connection with other systems in server, ansible uses this invetory file
+
+ansible_connection - ssh/winrm/localhost
+ansible_port - 22/5986
+anisble_user - root/administrator
+ansible_ssh_pass - password
+
+//single spaced key value pairs
+web ansible_host=server.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=abc@123
+
+
+//testing connection to target machines
+ansible <target machine name> -m ping -i inventory.txt
+
+if success it gives success in response. If the keys are not present it will give error:
+
+not recommended way of handeling this is
+vi /etc/ansible -> goto ansible.cfg -> goto hostkey uncommend it and set to false! and try pinging again.
+it should work in this case.
+
+
+# Sample Inventory File
+
+# Web Servers
+web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+
+# Database Servers
+db1 ansible_host=server4.company.com ansible_connection=winrm ansible_user=administrator ansible_password=Password123!
+
+[web_servers]
+web1
+web2
+web3
+
+[db_servers]
+db1
+
+#"children is required here"
+[all_servers:children]
+web_servers
+db_servers
