@@ -1,0 +1,6 @@
+-
+  name: <name>
+  hosts:
+  tasks:
+    - name: <name of tasks>
+      ping:

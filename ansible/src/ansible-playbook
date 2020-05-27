@@ -1,0 +1,23 @@
+These files are usually used to perform set of operations on a server or perform on master server.
+e.g starting a web server, deploying 50 VMs
+
+
+
+ansible execution command:
+
+ansible <hosts> -m <module e.g ping> -i <inventory-file>
+
+
+<hosts> value of this can be - all, <ip>, localhost.
+all is the default group created by ansible in order to execute the module. all contains all the hosts mentioned in inventory file.
+
+
+declaration file:
+
+
+- # start of 1st playbook
+  name: name of playbook
+  hosts: <hosts>
+  tasks:
+    - name: <name of task>
+      <action>: # if action is ping just mention ping and that should be enough, it doesnt take any value
