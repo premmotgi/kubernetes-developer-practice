@@ -1,0 +1,11 @@
+when you have multiple systems to run and only one playbook you have.
+you may want to limit the execution steps based on the system. In such cases comes the use of conditional tag
+
+"when"
+
+- name:
+  when: <<condition>>
+
+  e.g.
+  when: ansible_os_family == 'Debian' and
+        ansible_distribution_version == '16.04'
