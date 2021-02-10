@@ -32,3 +32,16 @@
     -
       shell: 'echo "nameserver 10.0.250.10" >> /etc/resolv.conf'
       when: command_output.stdout.find('10.0.250.10') == -1 # stdout used to access the file and find respective data
+      
+      
+---
+You should include the brackets in every usage except for conditionals (e.g.: when, failed_when, the that parameter of the assert module, etc). In very old versions with_* parameters were also an exception, but they haven't been for a while.
+
+It makes a little bit more sense if you consider that:
+
+It makes no sense for conditionals to be any kind of constant other than True or False (or any equivalent representation in YAML). Hence, no need to distinguish between string constants and Jinja expressions.
+
+Ansible evaluates the condition by wrapping it with a Jinja expression designed to ensure the result is always a boolean. Including the brackets makes that much harder to do, possibly involving removing the brackets.
+
+It's possible a more consistent strategy would have been devised if Ansible was starting from scratch nowadays, but that ship has sailed long ago (and to be honest, it shows in pretty much every single corner of it).
+      
