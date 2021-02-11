@@ -19,6 +19,14 @@ vi /etc/ansible -> goto ansible.cfg -> goto hostkey uncommend it and set to fals
 it should work in this case.
 
 
+Even after the above fix if there is any issue related to sshpass,
+
+1. do : apt-get install sshpass
+2. Try running ansible <target machine name> -m ping -i inventory.txt {without starting with sudo and it should work}
+
+
+
+
 # Sample Inventory File
 
 # Web Servers
